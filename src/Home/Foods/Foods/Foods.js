@@ -1,0 +1,30 @@
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import FoodItems from '../FoodItems/FoodItems';
+
+const Foods = () => {
+  const [foods, setFoods] = useState([]);
+
+  useEffect(() => {
+    fetch('https://server-side-opal-nu.vercel.app/foods')
+      .then((res) => res.json())
+      .then((data) => setFoods(data));
+  }, []);
+  return (
+    <div className='container'>
+      <h1 className='text-3xl my-4'>Top-rated foods of this restaurent:</h1>
+      <div className='grid grid-cols-1	md:grid-cols-3 gap-0.5	justify-items-center	 '>
+        {foods.map((foodItem) => (
+          <FoodItems key={foodItem._id} foodItem={foodItem}></FoodItems>
+        ))}
+      </div>
+      <div>
+        <Link to='/allFoods' className='btn btn-outline btn-error w-full my-4'>
+          See More
+        </Link>
+      </div>
+    </div>
+  );
+};
+
+export default Foods;
