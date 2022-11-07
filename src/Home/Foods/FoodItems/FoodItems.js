@@ -14,7 +14,9 @@ const FoodItems = ({ foodItem }) => {
           <p>If a dog chews shoes whose shoes does he choose?</p>
           <p>Ratings: {ratings} stars </p>
           <div className='card-actions justify-end'>
-            <Link className='btn btn-primary'>Details</Link>
+            <Link to={`/allfoods/${foodItem._id}`} className='btn btn-primary'>
+              Details
+            </Link>
           </div>
         </div>
       </div>

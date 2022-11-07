@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Blog from '../../Blog/Blog';
 import AllFoods from '../../Home/Foods/AllFoods/AllFoods';
+import FoodDetails from '../../Home/Foods/FoodDetails/FoodDetails';
 import Home from '../../Home/Home';
 import Main from '../../layout/Main';
 import Login from '../../Pages/Shared/Login/Login';
@@ -30,6 +31,12 @@ const router = createBrowserRouter([
       {
         path: '/allfoods',
         element: <AllFoods></AllFoods>,
+      },
+      {
+        path: '/allfoods/:id',
+        element: <FoodDetails></FoodDetails>,
+        loader: ({ params }) =>
+          fetch(`https://server-side-opal-nu.vercel.app/allfoods/${params.id}`),
       },
     ],
   },
