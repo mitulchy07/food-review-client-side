@@ -5,6 +5,7 @@ import AllFoods from '../../Home/Foods/AllFoods/AllFoods';
 import FoodDetails from '../../Home/Foods/FoodDetails/FoodDetails';
 import Home from '../../Home/Home';
 import Main from '../../layout/Main';
+import MyReviews from '../../MyReviews/MyReviews';
 import Login from '../../Pages/Shared/Login/Login';
 import Register from '../../Pages/Shared/Login/Register';
 import ReviewWritting from '../../Reviews/ReviewWritting/ReviewWritting';
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
       {
         path: '/additem',
         element: <AddItem></AddItem>,
+      },
+      {
+        path: '/myreviews',
+        element: <MyReviews></MyReviews>,
       },
     ],
   },

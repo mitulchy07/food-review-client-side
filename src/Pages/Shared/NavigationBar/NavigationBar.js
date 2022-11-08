@@ -31,7 +31,9 @@ const NavigationBar = () => {
             </li>
 
             <li>
-              <Link className='btn btn-ghost'>Reviews</Link>
+              <Link to='/myreviews' className='btn btn-ghost'>
+                Reviews
+              </Link>
             </li>
             <li>
               <Link to='/login' className='btn btn-ghost'>
@@ -53,7 +55,9 @@ const NavigationBar = () => {
           </li>
 
           <li>
-            <Link className='btn btn-ghost'>Reviews</Link>
+            <Link to='/myreviews' className='btn btn-ghost'>
+              Reviews
+            </Link>
           </li>
           <li>
             <Link to='/login' className='btn btn-ghost'>
