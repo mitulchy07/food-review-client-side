@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import image1 from '../../../images/cat.jpg';
 import image from '../../../images/review.jpg';
+import ReviewCard from './ReviewCard/ReviewCard';
 
 const FoodDetails = () => {
   const { name, img, description, ratings, lowPrice, highPrice, meals, _id } =
     useLoaderData();
 
+  const [reviews, setReviews] = useState([]);
+  useEffect(() => {
+    fetch(`https://server-side-opal-nu.vercel.app/allreviews/${name}`)
+      .then((res) => res.json())
+      .then((data) => setReviews(data));
+  }, [name]);
+  console.log(reviews);
   return (
     <div>
       <div
@@ -25,7 +33,7 @@ const FoodDetails = () => {
               Ratings: {ratings} stars
             </p>{' '}
             <p className='badge badge-ghost badge-sm'>
-              Total Reviews: 5 reviews
+              Total Reviews: {reviews.length} reviews
             </p>
             <img src={image1} alt='cat' className='rounded' />
             <div className='card-actions justify-end'>
@@ -54,44 +62,10 @@ const FoodDetails = () => {
         </div>
       </div>
 
-      <div>
-        <div className='overflow-x-auto w-full'>
-          <table className='table w-full'>
-            <thead>
-              <tr>
-                <th></th>
-                <th>Name</th>
-                <th>Title</th>
-                <th>Reviews</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th></th>
-                <td>
-                  <div className='flex items-center space-x-3'>
-                    <div className='avatar'>
-                      <div className='mask mask-squircle w-12 h-12'>
-                        <img
-                          src='/tailwind-css-component-profile-2@56w.png'
-                          alt='Avatar Tailwind CSS Component'
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <div className='font-bold'>Hart Hagerty</div>
-                      <div className='text-sm opacity-50'>United States</div>
-                    </div>
-                  </div>
-                </td>
-                <td>Zemlak, Daniel and Leannon</td>
-                <td>Purple</td>
-                <th></th>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+      <div className='container my-5'>
+        {reviews.map((review) => (
+          <ReviewCard key={review._id} review={review}></ReviewCard>
+        ))}
       </div>
     </div>
   );
