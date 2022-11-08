@@ -1,12 +1,29 @@
 import React, { useContext, useEffect, useState } from 'react';
 
 import { AuthContext } from '../Context/AuthProvider/AuthProvider';
-import ReviewCard from '../Home/Foods/FoodDetails/ReviewCard/ReviewCard';
+import PersonalReview from '../PersonalReview/PersonalReview';
 
 const MyReviews = () => {
   const { user } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
-  console.log(user?.email);
+  const handleDelete = (id) => {
+    const proceed = window.confirm('Are you sure?');
+    if (proceed) {
+      fetch(`https://server-side-opal-nu.vercel.app/myreviews/${id}`, {
+        method: 'DELETE',
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.deletedCount > 0) {
+            alert('Successfully Deleted.');
+            const remaining = reviews.filter((odr) => odr._id !== id);
+            setReviews(remaining);
+          }
+        });
+    }
+  };
+
   useEffect(() => {
     if (!user?.email) return;
     fetch(`https://server-side-opal-nu.vercel.app/myreviews/${user?.email}`)
@@ -16,7 +33,11 @@ const MyReviews = () => {
   return (
     <div>
       {reviews.map((review) => (
-        <ReviewCard key={review._id} review={review}></ReviewCard>
+        <PersonalReview
+          key={review._id}
+          review={review}
+          handleDelete={handleDelete}
+        ></PersonalReview>
       ))}
     </div>
   );
