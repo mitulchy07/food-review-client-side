@@ -4,7 +4,7 @@ import image1 from '../../../images/cat.jpg';
 import image from '../../../images/review.jpg';
 
 const FoodDetails = () => {
-  const { name, img, description, ratings, lowPrice, highPrice, meals } =
+  const { name, img, description, ratings, lowPrice, highPrice, meals, _id } =
     useLoaderData();
   return (
     <div>
@@ -28,7 +28,9 @@ const FoodDetails = () => {
             </p>
             <img src={image1} alt='cat' className='rounded' />
             <div className='card-actions justify-end'>
-              <Link className='btn w-full'>Write a review</Link>
+              <Link to={`/allfoods/${_id}/reviewwrite`} className='btn w-full'>
+                Write a review
+              </Link>
             </div>
           </div>
         </div>
