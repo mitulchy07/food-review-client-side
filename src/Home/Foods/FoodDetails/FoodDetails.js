@@ -6,6 +6,7 @@ import image from '../../../images/review.jpg';
 const FoodDetails = () => {
   const { name, img, description, ratings, lowPrice, highPrice, meals, _id } =
     useLoaderData();
+
   return (
     <div>
       <div
@@ -37,8 +38,8 @@ const FoodDetails = () => {
         <div className='card w-96 bg  text-yellow-900	'>
           <div className='card-body'>
             <h2 className='card-title'>Food Details:</h2>
-            <p> Minimum price: {lowPrice} </p>
-            <p> Maximum price: {highPrice} </p>
+            <p> Minimum price: ${lowPrice} </p>
+            <p> Maximum price: ${highPrice} </p>
             <p>Meals Available for: {meals} </p>
             <p>Description: {description} </p>
           </div>
