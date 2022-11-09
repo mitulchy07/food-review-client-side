@@ -18,11 +18,13 @@ const ReviewWritting = ({ _id }) => {
     const email = user?.email || 'unregistered';
     const ratings = form.ratings.value;
     const details = form.details.value;
+    const subject = form.subject.value;
     console.log(details);
     const review = {
       name: name,
       email: email,
       ratings: ratings,
+      subject: subject,
       details: details,
     };
     fetch('https://server-side-opal-nu.vercel.app/addreview ', {

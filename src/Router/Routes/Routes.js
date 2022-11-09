@@ -6,6 +6,7 @@ import FoodDetails from '../../Home/Foods/FoodDetails/FoodDetails';
 import Home from '../../Home/Home';
 import Main from '../../layout/Main';
 import MyReviews from '../../MyReviews/MyReviews';
+import UpdateReview from '../../MyReviews/UpdateReview';
 import Login from '../../Pages/Shared/Login/Login';
 import Register from '../../Pages/Shared/Login/Register';
 import NoData from '../../Pages/Shared/NoData/NoData';
@@ -42,6 +43,14 @@ const router = createBrowserRouter([
         element: <FoodDetails></FoodDetails>,
         loader: ({ params }) =>
           fetch(`https://server-side-opal-nu.vercel.app/allfoods/${params.id}`),
+      },
+      {
+        path: '/myreviews/:id',
+        element: <UpdateReview></UpdateReview>,
+        loader: ({ params }) =>
+          fetch(
+            `https://server-side-opal-nu.vercel.app/allreviews/${params.id}`
+          ),
       },
       {
         path: '/allfoods/:id/reviewwrite',
