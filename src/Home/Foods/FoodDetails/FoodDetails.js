@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
+import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 import image1 from '../../../images/cat.jpg';
 import image from '../../../images/review.jpg';
 import ReviewCard from './ReviewCard/ReviewCard';
 
 const FoodDetails = () => {
+  const { user } = useContext(AuthContext);
   const { name, img, description, ratings, lowPrice, highPrice, meals, _id } =
     useLoaderData();
 
@@ -14,7 +16,6 @@ const FoodDetails = () => {
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, [name]);
-  console.log(reviews);
   return (
     <div>
       <div
@@ -36,10 +37,19 @@ const FoodDetails = () => {
               Total Reviews: {reviews.length} reviews
             </p>
             <img src={image1} alt='cat' className='rounded' />
-            <div className='card-actions justify-end'>
-              <Link to={`/allfoods/${_id}/reviewwrite`} className='btn w-full'>
-                Write a review
-              </Link>
+            <div className='card-actions '>
+              {user?.uid ? (
+                <Link
+                  to={`/allfoods/${_id}/reviewwrite`}
+                  className='btn w-full'
+                >
+                  Write a review
+                </Link>
+              ) : (
+                <Link className='btn w-full' to='/login'>
+                  Please Login to Review
+                </Link>
+              )}
             </div>
           </div>
         </div>
