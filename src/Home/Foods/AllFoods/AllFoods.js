@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { Spinner } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 import FoodItems from '../FoodItems/FoodItems';
 
 const AllFoods = () => {
   const [allFoods, setAllFoods] = useState([]);
+  const { loading } = useContext(AuthContext);
   useEffect(() => {
     fetch('https://server-side-opal-nu.vercel.app/allfoods')
       .then((res) => res.json())
@@ -12,6 +15,7 @@ const AllFoods = () => {
 
   return (
     <div className='text-center my-4 '>
+      {loading ? <Spinner animation='border' /> : <></>}
       <h1 className='text-3xl my-2'>Total Food Items: {allFoods.length} </h1>
       <div>
         <Link to='/additem' className='btn btn-warning my-4 w-1/2 container '>

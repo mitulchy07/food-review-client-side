@@ -1,11 +1,18 @@
-import React, { useContext } from 'react';
-import { Form, Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Spinner } from 'react-bootstrap';
+import { Form, Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 import image from '../../../images/login.jpg';
 
 const Login = () => {
-  const { login } = useContext(AuthContext);
+  const { login, handleGoogleSignIn, loading } = useContext(AuthContext);
+  const [success, setSuccess] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
+
   const handleLogin = (event) => {
+    setSuccess(false);
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
@@ -16,12 +23,15 @@ const Login = () => {
         const user = result.user;
         form.reset();
         console.log(user);
+        setSuccess(true);
+        navigate(from, { replace: true });
       })
       .catch((err) => console.error(err));
   };
 
   return (
     <div className='hero w-full my-20'>
+      {loading ? <Spinner animation='border' /> : <></>}
       <div className='hero-content grid gap-20 md:grid-cols-2 flex-col lg:flex-row'>
         <div className='text-center lg:text-left'>
           <img className='w-3/4' src={image} alt='' />
@@ -58,7 +68,13 @@ const Login = () => {
             </div>
             <div className='form-control mt-6'>
               <input className='btn btn-primary' type='submit' value='Login' />
+              {success && (
+                <p className='text-success my-2'>Login Successfull!</p>
+              )}
             </div>
+            <button className='btn' onClick={handleGoogleSignIn}>
+              Login with google
+            </button>
           </Form>
         </div>
       </div>

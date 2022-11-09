@@ -8,7 +8,9 @@ import Main from '../../layout/Main';
 import MyReviews from '../../MyReviews/MyReviews';
 import Login from '../../Pages/Shared/Login/Login';
 import Register from '../../Pages/Shared/Login/Register';
+import NoData from '../../Pages/Shared/NoData/NoData';
 import ReviewWritting from '../../Reviews/ReviewWritting/ReviewWritting';
+import PrivateRoute from '../PrivateRoute/PrivateRoute';
 
 const router = createBrowserRouter([
   {
@@ -43,17 +45,33 @@ const router = createBrowserRouter([
       },
       {
         path: '/allfoods/:id/reviewwrite',
-        element: <ReviewWritting></ReviewWritting>,
+        element: (
+          <PrivateRoute>
+            <ReviewWritting></ReviewWritting>
+          </PrivateRoute>
+        ),
       },
       {
         path: '/additem',
-        element: <AddItem></AddItem>,
+        element: (
+          <PrivateRoute>
+            <AddItem></AddItem>
+          </PrivateRoute>
+        ),
       },
       {
         path: '/myreviews',
-        element: <MyReviews></MyReviews>,
+        element: (
+          <PrivateRoute>
+            <MyReviews></MyReviews>
+          </PrivateRoute>
+        ),
       },
     ],
+  },
+  {
+    path: '*',
+    element: <NoData></NoData>,
   },
 ]);
 

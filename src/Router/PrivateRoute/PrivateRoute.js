@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Spinner } from 'react-bootstrap';
 import { Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 
@@ -7,13 +8,13 @@ const PrivateRoute = ({ children }) => {
   const location = useLocation();
 
   if (loading) {
-    return <h1>Loading</h1>;
+    return <Spinner animation='border' />;
   }
 
-  if (user) {
+  if (user && user.uid) {
     return children;
   }
-  return <Navigate state={{ from: location }} replace></Navigate>;
+  return <Navigate to='/login' state={{ from: location }} replace></Navigate>;
 };
 
 export default PrivateRoute;

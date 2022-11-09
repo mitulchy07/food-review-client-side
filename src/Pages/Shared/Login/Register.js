@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
+import { Spinner } from 'react-bootstrap';
 import { Form, Link } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 import image from '../../../images/register.jpg';
 
 const Register = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, loading } = useContext(AuthContext);
   const handleRegister = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -20,6 +21,7 @@ const Register = () => {
 
   return (
     <div className='hero w-full my-20'>
+      {loading ? <Spinner animation='border' /> : <></>}
       <div className='hero-content grid gap-20 md:grid-cols-2 flex-col lg:flex-row'>
         <div className='text-center lg:text-left'>
           <img className='w-3/4' src={image} alt='' />
