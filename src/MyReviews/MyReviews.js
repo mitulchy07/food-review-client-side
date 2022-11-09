@@ -5,7 +5,7 @@ import useTitel from '../hooks/useTitle';
 import PersonalReview from '../PersonalReview/PersonalReview';
 
 const MyReviews = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
   useTitel('MY REVIEWS');
   const handleDelete = (id) => {
@@ -28,8 +28,20 @@ const MyReviews = () => {
 
   useEffect(() => {
     if (!user?.email) return;
-    fetch(`https://server-side-opal-nu.vercel.app/myreviews/${user?.email}`)
-      .then((res) => res.json())
+    fetch(`https://server-side-opal-nu.vercel.app/myreviews/${user?.email}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem(
+          'token-for-review-site'
+        )}`,
+      },
+    })
+      .then((res) => {
+        if (res.status === 401) {
+          alert('Error: 401. Login Again');
+          logout();
+        }
+        return res.json();
+      })
       .then((data) => setReviews(data));
   }, [user?.email]);
   return (
