@@ -29,13 +29,25 @@ const NavigationBar = () => {
             className='menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52'
           >
             <li>
-              <Link className='btn btn-ghost'>Blog</Link>
+              {user?.uid ? (
+                <Link to='/myreviews' className='btn btn-ghost'>
+                  Reviews
+                </Link>
+              ) : (
+                ''
+              )}
             </li>
-
             <li>
-              <Link to='/myreviews' className='btn btn-ghost'>
-                Reviews
-              </Link>
+              {user?.uid ? (
+                <Link to='/additem' className='btn btn-ghost'>
+                  Add Item
+                </Link>
+              ) : (
+                ''
+              )}
+            </li>
+            <li>
+              <Link className='btn btn-ghost'>Blog</Link>
             </li>
             <li>
               <Link to='/login' className='btn btn-ghost'>
@@ -45,20 +57,33 @@ const NavigationBar = () => {
           </ul>
         </div>
         <Link to='/' className='btn btn-ghost normal-case text-xl'>
-          PowerHub
+          <span className='text-success'>GOOD</span>
+          <span>DAY</span>
         </Link>
       </div>
       <div className='navbar-center hidden lg:flex'>
         <ul className='menu menu-horizontal p-0'>
           <li>
+            {user?.uid ? (
+              <Link to='/myreviews' className='btn btn-ghost'>
+                Reviews
+              </Link>
+            ) : (
+              <></>
+            )}
+          </li>
+          <li>
+            {user?.uid ? (
+              <Link to='/additem' className='btn btn-ghost'>
+                Add Item
+              </Link>
+            ) : (
+              <></>
+            )}
+          </li>
+          <li>
             <Link to='/blog' className='btn btn-ghost'>
               Blog
-            </Link>
-          </li>
-
-          <li>
-            <Link to='/myreviews' className='btn btn-ghost'>
-              Reviews
             </Link>
           </li>
           <li>

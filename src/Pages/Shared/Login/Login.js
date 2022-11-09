@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Spinner } from 'react-bootstrap';
 import { Form, Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
+import useTitel from '../../../hooks/useTitle';
 import image from '../../../images/login.jpg';
 
 const Login = () => {
@@ -9,7 +10,17 @@ const Login = () => {
   const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  useTitel('LOGIN');
   const from = location.state?.from?.pathname || '/';
+
+  const handleGoogle = () => {
+    handleGoogleSignIn()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((err) => console.error(err));
+  };
 
   const handleLogin = (event) => {
     setSuccess(false);
@@ -72,7 +83,7 @@ const Login = () => {
                 <p className='text-success my-2'>Login Successfull!</p>
               )}
             </div>
-            <button className='btn' onClick={handleGoogleSignIn}>
+            <button className='btn' onClick={handleGoogle}>
               Login with google
             </button>
           </Form>

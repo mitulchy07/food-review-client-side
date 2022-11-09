@@ -2,10 +2,12 @@ import React, { useContext } from 'react';
 import { Spinner } from 'react-bootstrap';
 import { Form, Link } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
+import useTitel from '../../../hooks/useTitle';
 import image from '../../../images/register.jpg';
 
 const Register = () => {
   const { createUser, loading } = useContext(AuthContext);
+  useTitel('REGISTER');
   const handleRegister = (event) => {
     event.preventDefault();
     const form = event.target;

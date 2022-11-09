@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 
 import { AuthContext } from '../Context/AuthProvider/AuthProvider';
+import useTitel from '../hooks/useTitle';
 import PersonalReview from '../PersonalReview/PersonalReview';
 
 const MyReviews = () => {
   const { user } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
+  useTitel('MY REVIEWS');
   const handleDelete = (id) => {
     const proceed = window.confirm('Are you sure?');
     if (proceed) {
