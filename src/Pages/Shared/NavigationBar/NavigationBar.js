@@ -5,7 +5,7 @@ import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 const NavigationBar = () => {
   const { user, logout } = useContext(AuthContext);
   return (
-    <div className='navbar bg-base-100 text-white'>
+    <div className='navbar bg-black text-white'>
       <div className='navbar-start'>
         <div className='dropdown'>
           <label tabIndex={0} className='btn btn-ghost lg:hidden'>
@@ -86,6 +86,7 @@ const NavigationBar = () => {
               Blog
             </Link>
           </li>
+
           <li>
             {user?.uid ? (
               <Link onClick={logout} className='btn btn-ghost'>

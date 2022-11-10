@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Spinner } from 'react-bootstrap';
 import { Form, Link } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
@@ -6,30 +6,39 @@ import useTitel from '../../../hooks/useTitle';
 import image from '../../../images/register.jpg';
 
 const Register = () => {
-  const { createUser, loading } = useContext(AuthContext);
+  const { createUser, loading, updateUserName } = useContext(AuthContext);
   useTitel('REGISTER');
+  const [errorMsg, setErrorMsg] = useState('');
+  const [success, setSuccess] = useState(false);
+
   const handleRegister = (event) => {
     event.preventDefault();
+    setSuccess(false);
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
+    const name = form.name.value;
+    const img = form.img.value;
     createUser(email, password)
       .then((result) => {
         const user = result.user;
+        updateUserName(name, img);
         form.reset();
         console.log(user);
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        setErrorMsg(error.message);
+      });
   };
 
   return (
-    <div className='hero w-full my-20'>
+    <div>
       {loading ? <Spinner animation='border' /> : <></>}
       <div className='hero-content grid gap-20 md:grid-cols-2 flex-col lg:flex-row'>
         <div className='text-center lg:text-left'>
-          <img className='w-3/4' src={image} alt='' />
+          <img src={image} alt='' />
         </div>
-        <div className='card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100'>
+        <div className='card  w-full shadow-2xl '>
           <h1 className='text-5xl font-bold text-center my-2'>Register now!</h1>
           <Form onSubmit={handleRegister} className='card-body'>
             <div className='form-control'>
@@ -40,7 +49,19 @@ const Register = () => {
                 type='text'
                 name='name'
                 placeholder='name'
-                className='input input-bordered'
+                className='input bg-transparent input-bordered'
+                required
+              />
+            </div>
+            <div className='form-control'>
+              <label className='label'>
+                <span className='label-text'>PhotoURL</span>
+              </label>
+              <input
+                type='text'
+                name='img'
+                placeholder='PhotoURL'
+                className='input bg-transparent input-bordered'
                 required
               />
             </div>
@@ -52,7 +73,7 @@ const Register = () => {
                 type='email'
                 name='email'
                 placeholder='email'
-                className='input input-bordered'
+                className='input bg-transparent input-bordered'
                 required
               />
             </div>
@@ -64,7 +85,7 @@ const Register = () => {
                 type='password'
                 name='password'
                 placeholder='password'
-                className='input input-bordered'
+                className='input bg-transparent input-bordered'
                 required
               />
               <label className='label'>
@@ -72,6 +93,12 @@ const Register = () => {
                   Already have an account?
                 </Link>
               </label>
+              {success ? (
+                <p className='text-success'>Registration Successfull</p>
+              ) : (
+                ' '
+              )}
+              <p className='text-danger'>{errorMsg} </p>
             </div>
             <div className='form-control mt-6'>
               <input

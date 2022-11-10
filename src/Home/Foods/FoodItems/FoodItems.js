@@ -6,7 +6,7 @@ const FoodItems = ({ foodItem }) => {
   const { name, img, ratings, description, lowPrice, highPrice } = foodItem;
   return (
     <div>
-      <div className='card w-auto h-auto bg-amber-600 shadow-xl text-white'>
+      <div className='card w-auto h-auto bg-black  shadow-xl text-white'>
         <figure>
           <PhotoProvider>
             <PhotoView src={img}>
@@ -28,7 +28,7 @@ const FoodItems = ({ foodItem }) => {
           <div className='card-actions'>
             <Link
               to={`/allfoods/${foodItem._id}`}
-              className='btn btn-warning w-full'
+              className='btn bg-red-900 w-full'
             >
               Details
             </Link>

@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from '../Context/AuthProvider/AuthProvider';
 import image from '../images/clock.jpg';
 
 const AddItem = () => {
   const { user } = useContext(AuthContext);
 
+  const notify = () => toast('Item added Successfully!');
   const handlePlaceItem = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -37,7 +40,7 @@ const AddItem = () => {
       .then((data) => {
         console.log(data);
         if (data.acknowledged) {
-          alert('Item Added');
+          notify();
           form.reset();
         }
       })
@@ -129,6 +132,7 @@ const AddItem = () => {
                 type='submit'
                 value='+ Add Item'
               />
+              <ToastContainer />
             </div>
           </div>
         </div>

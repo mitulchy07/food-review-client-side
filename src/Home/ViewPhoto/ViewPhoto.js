@@ -4,7 +4,7 @@ import image2 from '../../images/cat.jpg';
 
 const ViewPhoto = () => {
   return (
-    <div>
+    <div className='md:w-96'>
       <PhotoProvider>
         <PhotoView src={image2}>
           <img src={image2} alt='' />

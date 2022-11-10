@@ -1,16 +1,16 @@
 import { createBrowserRouter } from 'react-router-dom';
 import AddItem from '../../AddItem/AddItem';
-import Blog from '../../Blog/Blog';
+
 import AllFoods from '../../Home/Foods/AllFoods/AllFoods';
 import FoodDetails from '../../Home/Foods/FoodDetails/FoodDetails';
 import Home from '../../Home/Home';
 import Main from '../../layout/Main';
 import MyReviews from '../../MyReviews/MyReviews';
 import UpdateReview from '../../MyReviews/UpdateReview';
+import Blogs from '../../Pages/Shared/Blogs/Blogs';
 import Login from '../../Pages/Shared/Login/Login';
 import Register from '../../Pages/Shared/Login/Register';
 import NoData from '../../Pages/Shared/NoData/NoData';
-import ReviewWritting from '../../Reviews/ReviewWritting/ReviewWritting';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 
 const router = createBrowserRouter([
@@ -28,7 +28,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/blog',
-        element: <Blog></Blog>,
+        element: <Blogs></Blogs>,
       },
       {
         path: '/register',
@@ -51,14 +51,6 @@ const router = createBrowserRouter([
           fetch(
             `https://server-side-opal-nu.vercel.app/allreviews/${params.id}`
           ),
-      },
-      {
-        path: '/allfoods/:id/reviewwrite',
-        element: (
-          <PrivateRoute>
-            <ReviewWritting></ReviewWritting>
-          </PrivateRoute>
-        ),
       },
       {
         path: '/additem',

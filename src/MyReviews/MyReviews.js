@@ -1,15 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react';
 
+import { toast, ToastContainer } from 'react-toastify';
 import { AuthContext } from '../Context/AuthProvider/AuthProvider';
 import useTitel from '../hooks/useTitle';
 import PersonalReview from '../PersonalReview/PersonalReview';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 const MyReviews = () => {
   const { user, logout } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
   useTitel('MY REVIEWS');
   const handleDelete = (id) => {
-    const proceed = window.confirm('Are you sure?');
+    const proceed = window.confirm('Are You Sure?');
     if (proceed) {
       fetch(`https://server-side-opal-nu.vercel.app/myreviews/${id}`, {
         method: 'DELETE',
@@ -18,7 +21,16 @@ const MyReviews = () => {
         .then((data) => {
           console.log(data);
           if (data.deletedCount > 0) {
-            alert('Successfully Deleted.');
+            toast.warn('Deleted', {
+              position: 'top-center',
+              autoClose: 1000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: 'dark',
+            });
             const remaining = reviews.filter((odr) => odr._id !== id);
             setReviews(remaining);
           }
@@ -46,6 +58,13 @@ const MyReviews = () => {
   }, [user?.email]);
   return (
     <div>
+      {reviews.length === 0 ? (
+        <h1 className='text-3xl text-center text-warning my-5'>
+          You have not given any reviews yet.
+        </h1>
+      ) : (
+        <></>
+      )}
       {reviews.map((review) => (
         <PersonalReview
           key={review._id}
@@ -53,6 +72,18 @@ const MyReviews = () => {
           handleDelete={handleDelete}
         ></PersonalReview>
       ))}
+      <ToastContainer
+        position='top-center'
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme='dark'
+      />
     </div>
   );
 };
