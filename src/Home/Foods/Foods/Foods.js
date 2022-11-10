@@ -25,8 +25,8 @@ const Foods = () => {
         ))}
       </div>
       <div>
-        <Link to='/allFoods' className='btn btn-outline btn-error w-full my-4'>
-          See More
+        <Link to='/allFoods' className='btn btn-outline btn-red w-full my-4'>
+          See All
         </Link>
       </div>
     </div>

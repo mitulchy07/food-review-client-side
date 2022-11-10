@@ -5,9 +5,9 @@ const ReviewCard = ({ review }) => {
     <div className='card card-side shadow-xl align-items-center'>
       <figure>
         <img
-          src={review.photoURL}
+          src={review?.photoURL}
           className='h-20 w-20 rounded m-2'
-          alt='Movie'
+          alt='Bad PhotoURL'
         />
       </figure>
       <div className='card-body'>

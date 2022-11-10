@@ -7,19 +7,16 @@ const Faq = () => {
       <h1 className='text-center text-white fs-1'>FAQ</h1>
       <Accordion className='my-4' defaultActiveKey={['0']} alwaysOpen>
         <Accordion.Item eventKey='0'>
-          <Accordion.Header>Why web development?</Accordion.Header>
+          <Accordion.Header>Why is this site for?</Accordion.Header>
           <Accordion.Body>
-            Web development refers to activities related to creating, building,
-            and maintaining a website. The pretty web page you view on your
-            browser has a lot of work going on behind the scenes! Although each
-            website might have different attributes, three fundamental
-            components conduct every interaction between a user and a website.
+            You can find idea about some uncommon food here. Also you will know
+            the details about them. Being experienced in many training projects
+            means they understand what is needed to deliver a successful end to
+            end training programme from the initial.
           </Accordion.Body>
         </Accordion.Item>
         <Accordion.Item eventKey='1'>
-          <Accordion.Header>
-            Why an expert mentor is necessary?
-          </Accordion.Header>
+          <Accordion.Header>Why is this site necessary?</Accordion.Header>
           <Accordion.Body>
             Being experienced in many training projects means they understand
             what is needed to deliver a successful end to end training programme
@@ -30,7 +27,9 @@ const Faq = () => {
           </Accordion.Body>
         </Accordion.Item>
         <Accordion.Item eventKey='2'>
-          <Accordion.Header>Why you should get into IT World?</Accordion.Header>
+          <Accordion.Header>
+            How I will be benifited from here?
+          </Accordion.Header>
           <Accordion.Body>
             One where you love what you do? One that’s in-demand and pays well?
             One where you can make a difference in life? For many, an IT career

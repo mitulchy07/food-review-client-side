@@ -1,5 +1,7 @@
+import Tippy from '@tippyjs/react';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 
 const NavigationBar = () => {
@@ -50,19 +52,50 @@ const NavigationBar = () => {
               <Link className='btn btn-ghost'>Blog</Link>
             </li>
             <li>
-              <Link to='/login' className='btn btn-ghost'>
-                Login
-              </Link>
+              {user?.uid ? (
+                <Link onClick={logout} className='btn btn-ghost'>
+                  Logout
+                </Link>
+              ) : (
+                <Link to='/login' className='btn btn-ghost'>
+                  Login
+                </Link>
+              )}
             </li>
           </ul>
         </div>
         <Link to='/' className='btn btn-ghost normal-case text-xl'>
+          <img
+            src='https://media-cdn.tripadvisor.com/media/photo-s/17/3b/9a/d2/burger-king.jpg'
+            width='30'
+            height='10'
+            className='d-none d-lg-block align-top rounded-circle text-white mx-1'
+            alt=''
+          />
           <span className='text-success'>GOOD</span>
           <span>DAY</span>
         </Link>
       </div>
       <div className='navbar-center hidden lg:flex'>
         <ul className='menu menu-horizontal p-0'>
+          <li>
+            {user?.photoURL ? (
+              <Tippy
+                className='mx-1 text-white'
+                content={user?.email ? user?.email : ' '}
+                position='bottom'
+              >
+                {
+                  <h3>
+                    <span className='text-success'>Hello,</span>
+                    <span>{user?.displayName}</span>
+                  </h3>
+                }
+              </Tippy>
+            ) : (
+              ' '
+            )}
+          </li>
           <li>
             {user?.uid ? (
               <Link to='/myreviews' className='btn btn-ghost'>
@@ -86,7 +119,6 @@ const NavigationBar = () => {
               Blog
             </Link>
           </li>
-
           <li>
             {user?.uid ? (
               <Link onClick={logout} className='btn btn-ghost'>

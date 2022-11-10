@@ -8,8 +8,17 @@ import ReviewCard from '../ReviewCard/ReviewCard';
 
 const FoodDetails = () => {
   const { user } = useContext(AuthContext);
-  const { name, img, description, ratings, lowPrice, highPrice, meals, _id } =
-    useLoaderData();
+  const {
+    name,
+    img,
+    description,
+    ratings,
+    lowPrice,
+    highPrice,
+    meals,
+    _id,
+    date,
+  } = useLoaderData();
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
     fetch(`https://server-side-opal-nu.vercel.app/common/${_id}`)
@@ -94,6 +103,14 @@ const FoodDetails = () => {
             <p> Minimum price: ${lowPrice} </p>
             <p> Maximum price: ${highPrice} </p>
             <p>Meals Available for: {meals} </p>
+            <p>
+              Review Added on:{' '}
+              {date ? (
+                date
+              ) : (
+                <p className='text-danger'>User forget to add time.</p>
+              )}
+            </p>
             <p>Description: {description} </p>
           </div>
         </div>
