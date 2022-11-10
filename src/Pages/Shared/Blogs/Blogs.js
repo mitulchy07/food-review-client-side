@@ -6,58 +6,53 @@ const Blogs = () => {
     <div className='my-5'>
       <Accordion defaultActiveKey='0'>
         <Accordion.Item eventKey='0'>
-          <Accordion.Header>what is cors?</Accordion.Header>
+          <Accordion.Header>
+            what are the difference between SQL and NoSQL?
+          </Accordion.Header>
           <Accordion.Body>
-            Cross-Origin Resource Sharing (CORS) is an HTTP-header based
-            mechanism that allows a server to indicate any origins (domain,
-            scheme, or port) other than its own from which a browser should
-            permit loading resources. CORS also relies on a mechanism by which
-            browsers make a "preflight" request to the server hosting the
-            cross-origin resource, in order to check that the server will permit
-            the actual request. In that preflight, the browser sends headers
-            that indicate the HTTP method and headers that will be used in the
-            actual request.
+            SQL databases are vertically scalable, while NoSQL databases are
+            horizontally scalable. SQL databases are table-based, while NoSQL
+            databases are document, key-value, graph, or wide-column stores. SQL
+            databases are better for multi-row transactions, while NoSQL is
+            better for unstructured data like documents or JSON.
           </Accordion.Body>
         </Accordion.Item>
         <Accordion.Item eventKey='0'>
           <Accordion.Header>
-            Why are you using firebase? What other options do you have to
-            implement authentication?
+            What is JWT, and how does it work?
           </Accordion.Header>
           <Accordion.Body>
-            Google Firebase offers many features that pitch it as the go-to
-            backend development tool for web and mobile apps. It reduces
-            development workload and time. And it's a perfect prototyping tool.
-            Firebase is simple, lightweight, friendly, and industrially
-            recognized. <br />
-            There some alternative tools for firebase: <br />
-            Back4App, Back4app is an open-source, relational, low-code backend
-            platform, Backendless, Kuzzle, Pubnub, Kumulos, Appwrite, Deployd.
+            JSON Web Token (JWT) is an open standard (RFC 7519) that defines a
+            compact and self-contained way for securely transmitting information
+            between parties as a JSON object. This information can be verified
+            and trusted because it is digitally signed. <br />
+            JWTs differ from other web tokens in that they contain a set of
+            claims. Claims are used to transmit information between two parties.
+            What these claims are depends on the use case at hand. For example,
+            a claim may assert who issued the token, how long it is valid for,
+            or what permissions the client has been granted.
           </Accordion.Body>
         </Accordion.Item>
         <Accordion.Item eventKey='0'>
-          <Accordion.Header>How does the private route work?</Accordion.Header>
+          <Accordion.Header>
+            What is the difference between javascript and NodeJS?
+          </Accordion.Header>
           <Accordion.Body>
-            The react private route component renders a route component if the
-            user is logged in and in an authorised role for the route, if the
-            user isn’t logged in they’re redirected to the /login page, if the
-            user is logged in but aren’t in an authorised role they’re
-            redirected to the home page.
+            JavaScript is a simple programming language that can be used with
+            any browser that has the JavaScript Engine installed. <br /> On the
+            other hand, Node.js is an interpreter or execution environment for
+            the JavaScript programming language.
           </Accordion.Body>
         </Accordion.Item>
         <Accordion.Item eventKey='0'>
-          <Accordion.Header>What is Node? How does Node work?</Accordion.Header>
+          <Accordion.Header>
+            How does NodeJS handle multiple requests at the same time?
+          </Accordion.Header>
           <Accordion.Body>
-            Node.js is a JavaScript runtime environment that achieves low
-            latency and high throughput by taking a “non-blocking” approach to
-            serving requests. In other words, Node.js wastes no time or
-            resources on waiting for I/O requests to return.While spawning
-            threads incurs less memory and CPU overhead than forking processes,
-            it can still be inefficient. The presence of a large number of
-            threads can cause a heavily loaded system to spend precious cycles
-            on thread scheduling and context switching, which adds latency and
-            imposes limits on scalability and throughput. [ Also on InfoWorld:
-            Reactive JavaScript: The evolution of front-end architecture ]
+            NodeJS receives multiple client requests and places them into
+            EventQueue. NodeJS is built with the concept of event-driven
+            architecture. NodeJS has its own EventLoop which is an infinite loop
+            that receives requests and processes them.
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>
