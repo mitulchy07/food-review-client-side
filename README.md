@@ -1,4 +1,4 @@
-# Project Name: Resell Market
+# Project Name: Review our food items
 
 ## Live site: https://assignment-11-79940.web.app/
 
