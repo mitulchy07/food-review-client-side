@@ -5,7 +5,7 @@ import image from '../images/review.jpg';
 
 import 'react-toastify/dist/ReactToastify.css';
 
-const UpdateReview = () => {
+const  = () => {
   const currentReview = useLoaderData();
   const [review, setReview] = useState(currentReview);
   const handleUpdate = (event) => {
@@ -117,4 +117,4 @@ const UpdateReview = () => {
   );
 };
 
-export default UpdateReview;
+export default ;
